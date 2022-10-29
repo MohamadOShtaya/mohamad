@@ -1,14 +1,22 @@
 package Model;
 
 
+import javax.persistence.*;
 
-public class quetions {
+@Entity
+@Table(name = "questions")
+public class questions {
+    @Id
+    @Column(name = "question")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
+    @Column(name = "question_name")
     private String name;
-    public quetions(){
+
+    public questions(){
 
     }
-    public quetions(int id,String name){
+    public questions(int id, String name){
         this.id=id;
         this.name=name;
     }

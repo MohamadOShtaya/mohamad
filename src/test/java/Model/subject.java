@@ -1,15 +1,24 @@
 package Model;
 
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "subject")
 public class subject {
 
-
+    @Id
+    @Column(name = "subject_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
+    @Column(name = "subject_name")
     private String name;
-    private List<quetions> qList= new ArrayList<>();
+    @Column(name = "subject_url")
+    private String url;
+    @Column(name = "subject_flashCardList")
+    private List<flashCard> flashCards= new ArrayList<>();
     public subject() {
 
     }
@@ -18,17 +27,28 @@ public class subject {
         this.id = id;
         this.name = name;
     }
-    public subject(int id, String name,ArrayList qList) {
+    public subject(int id, String name,ArrayList<flashCard> flashCards,String url) {
         super();
         this.id = id;
         this.name = name;
-        this.qList=qList;
+        this.flashCards=flashCards;
+        this.url=url;
     }
+
+
+
+
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public List<flashCard> getFlashCards(){
+        return flashCards;
+    }
+    public void setFlashCards(List<flashCard> flashCards){
+        this.flashCards=flashCards;
     }
     public String getName() {
         return name;
@@ -36,9 +56,16 @@ public class subject {
     public void setName(String name) {
         this.name = name;
     }
-    @Override
+    public String getUrl(){
+        return url;
+    }
+    public void setUrl(String url){
+        this.url=url;
+    }
+
+        @Override
     public String toString() {
-        return "subjects [id=" + id + ", name=" + name + "]";
+        return "subjects [id=" + id + ", name=" + name +",flashCard"+flashCards+ ",url"+url + "]";
 
     }
 
